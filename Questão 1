@@ -6,4 +6,29 @@ t = (a+a) – (a+b);
 printf(“t = %d\n”, t); //
 
 // código mips:
+.data
+  var1: .byte 0
+  var2: .byte 0
+  var3: .byte 0
 
+.text
+  .globl main
+
+main:
+  # Declara as variáveis a e b
+  li $s1, 12
+  li $s2, 5
+
+  # Calcula t = (a + a) - (a + b)
+  add $t0, $s1, $s1
+  add $t1, $s1, $s2
+  sub $t2, $t0, $t1
+
+  # Imprime o resultado
+  li $v0, 1
+  move $a0, $t2
+  syscall
+
+  # Sai do programa
+  li $v0, 10
+  syscall
